@@ -1,17 +1,15 @@
 import os, qi, sys
 from threading import Timer
 from naoqi import ALProxy
+import time
 
-def base_connection():
-   pip = os.getenv('PEPPER_IP')
-   pport = 9559
-   connection_url = "tcp://" + pip + ":" + str(pport)
-   #app = qi.Application(["App", "--qi-url=" + connection_url])
-   #app.start()
-   #session = app.session
-   #tts_service = session.service("ALTextToSpeech")
-   #tts_service.setLanguage("English")
-   #tts_service.setParameter("speed", 90)
+robot = None
+
+def start_intro(new_robot):
+   
+   global robot 
+   robot = new_robot
+
    question = 'Hello. What is your name?'
    robot.say(question)
    username = raw_input()
@@ -67,6 +65,7 @@ def base_connection():
    exit()
 
 def stt(vocabulary, question, t = 10):
+   global robot
    #timer = Timer(t, timeout, args = (question, ))
    #timer.start()
    query = raw_input()
@@ -82,21 +81,10 @@ def stt(vocabulary, question, t = 10):
    return option
 
 def timeout(question):
+   global robot
    robot.say('You have not answered. Would you like me to repeat the question?')
    repeat = raw_input()
    if repeat == 'yes':
       robot.say(question)
    else:
       sys.exit()
-
-if __name__=="__main__":
-   pdir = os.getenv('PEPPER_TOOLS_HOME')
-   sys.path.append(pdir+ '/cmd_server')
-   import pepper_cmd
-   from pepper_cmd import *
-   if robot == None:
-     robot = PepperRobot()
-     robot.connect()                                                                                                                                                                                  "xubuntu-2004" 16:32 20-Jul-24
-   robot.begin()
-   base_connection()
-   end()

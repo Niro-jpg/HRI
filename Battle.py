@@ -1,8 +1,10 @@
 from Monster import *
 from utils import *
+import time
 
 class Battle:
-    def __init__(self,ally_monster = None, enemy_monster = None, pepper = False):
+    def __init__(self,ally_monster = None, enemy_monster = None, pepper = False, robot = None):
+        self.robot = robot
         if (ally_monster == None):
             self.ally_monster = Monster("andre", 100, 10, 10, 10, [1,2,5,4], "erba", "fuoco")
         else:
@@ -16,12 +18,7 @@ class Battle:
         
     def start_battle(self):
         self.wait_move()
-
-    def start_init_battle(self):
-
-        print(self.battle_state())
-        print("let's start the battle")
-
+        
     def battle_state(self):
         state_text = self.ally_monster.name + "        " + self.enemy_monster.name + "\n"  + "      types" + "\n" + self.ally_monster.type_1 + "      " + self.enemy_monster.type_1 + "\n"  + self.ally_monster.type_2 + "      " + self.enemy_monster.type_2 + "\n" + "    life:"+ "\n" + str(self.ally_monster.PS) + "       " + str(self.ally_monster.PS) + "\n" + "actual life:"+ "\n" + str(self.ally_monster.actual_PS) + "       " + str(self.ally_monster.actual_PS) 
         return state_text
@@ -29,7 +26,7 @@ class Battle:
     def wait_move(self):
         while True:
             move = input(" which move do you choose between:\br" + self.ally_monster.text_moves_list())
-            if not move.isdigit():
+            if not isinstance(move, int):
                 print("non ho capito")
             elif not 0 < int(move) < 5:
                 print("mossa non valida")
@@ -53,16 +50,16 @@ class Battle:
             else: self.solve_enemy_action(move)
 
     def solve_player_action(self, move):
-        self.ally_robot_interaction()
         phrase = "usi " + move.name() + " contro il nemico"
-        any = input(phrase)
+        self.ally_robot_interaction(phrase)
+        miao = raw_input(phrase)
         self.ally_monster.attack(move.selected_move, self.enemy_monster)
         self.continue_or_end()
 
     def solve_enemy_action(self, move):
-        self.enemy_robot_interaction()
         phrase = "il nemico ti attacca con " + move.name()
-        any = input(phrase)
+        self.enemy_robot_interaction(phrase)
+        miao = raw_input(phrase)
         self.enemy_monster.attack(move.selected_move, self.ally_monster)
         self.continue_or_end()
 
@@ -94,13 +91,17 @@ class Battle:
     def end_battle(self, result):
         print("battaglia finita!")
 
-    def ally_robot_interaction(self):
+    def ally_robot_interaction(self, phrase):
         if(self.pepper):
             print("pepper")
+            time.sleep(1)
+            self.robot.say('Character 1')
 
-    def enemy_robot_interaction(self):
+    def enemy_robot_interaction(self,phrase):
         if(self.pepper):
             print("pepper")
+            time.sleep(1)
+            self.robot.say('Character 1')
 
 class Moves_List:
     def __init__(self):
