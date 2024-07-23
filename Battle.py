@@ -1,7 +1,7 @@
 from Monster import *
 from utils import *
 import time
-from index_to_animation import index_to_animation
+from name_to_animation import name_to_animation
 
 class Battle:
     def __init__(self,ally_monster = None, enemy_monster = None, pepper = False, robot = None):
@@ -26,18 +26,21 @@ class Battle:
     
     def wait_move(self):
         while True:
-            move = input(" which move do you choose between:\br" + self.ally_monster.text_moves_list())
-            if not isinstance(move, int):
-                print("non ho capito")
-            elif not 0 < int(move) < 5:
-                print("mossa non valida")
-            else:
-                selected_ally_move = Move(self.ally_monster, int(move), 1, True)
-                self.moves_list.add_move(selected_ally_move)
-                random_move = random.randint(1,4)
-                selected_enemy_move = Move(self.enemy_monster, random_move, 1, False)
-                self.moves_list.add_move(selected_enemy_move)
-                break
+            self.robot_print(" which move do you choose between:\n" + self.ally_monster.text_moves_list())
+            move = raw_input()
+            try:
+                move = int(move)
+                if not 0 < int(move) < 5:
+                    self.robot_print("mossa non valida")
+                else:
+                    selected_ally_move = Move(self.ally_monster, int(move), 1, True)
+                    self.moves_list.add_move(selected_ally_move)
+                    random_move = random.randint(1,4)
+                    selected_enemy_move = Move(self.enemy_monster, random_move, 1, False)
+                    self.moves_list.add_move(selected_enemy_move)
+                    break
+            except:
+                self.robot_print("non ho capito")
         self.moves_list.sort_list_speed()
         self.solve_actions()
     
@@ -52,15 +55,17 @@ class Battle:
 
     def solve_player_action(self, move):
         phrase = "usi " + move.name() + " contro il nemico"
+        self.robot_print(phrase)
+        miao = raw_input()
         self.ally_robot_interaction(phrase)
-        miao = raw_input(phrase)
         self.ally_monster.attack(move.selected_move, self.enemy_monster)
         self.continue_or_end()
 
     def solve_enemy_action(self, move):
         phrase = "il nemico ti attacca con " + move.name()
+        self.robot_print(phrase)
+        miao = raw_input()
         self.enemy_robot_interaction(phrase)
-        miao = raw_input(phrase)
         self.enemy_monster.attack(move.selected_move, self.ally_monster)
         self.continue_or_end()
 
@@ -76,11 +81,11 @@ class Battle:
 
     def end_battle(self, result):
         if(result == 0):
-            print("pareggio")
+            self.robot_print("pareggio")
         elif(result == 1):
-            print("Vittoria!")
+            self.robot_print("Vittoria!")
         elif(result == 2):
-            print("Sconfitta...")
+            self.robot_print("Sconfitta...")
 
     def continue_or_end(self):
         result = self.check_end_battle()
@@ -89,21 +94,22 @@ class Battle:
         else:
             self.end_battle(result)
 
-    def end_battle(self, result):
-        print("battaglia finita!")
-
     def ally_robot_interaction(self, phrase, animation = 0):
         if(self.pepper):
             print("pepper")
             time.sleep(1)
-            self.robot.say('Character 1')
-            index_to_animation(0)
+            name_to_animation(index_to_animation_name(animation))
 
     def enemy_robot_interaction(self,phrase, animation = 0):
         if(self.pepper):
             print("pepper")
             time.sleep(1)
-            self.robot.say('Character 1')
+            name_to_animation(index_to_animation_name(animation))
+            
+    def robot_print(self, phrase):
+        if self.pepper:
+            self.robot.say(phrase)
+        print(phrase)
 
 class Moves_List:
     def __init__(self):
@@ -153,3 +159,32 @@ class Move:
             name = "testata"
         
         return name
+    
+def index_to_animation_name(index):
+
+    index   
+    name = 'damage'
+    if   index == 0:
+        name = 'damage'
+    elif index == 1:
+        # fuoco fatuo
+        name = 'rasengan'
+    elif index == 2:
+        # drago distorsione
+        name = 'rasengan'
+    elif index == 3:
+        # roccia fonda
+        name = 'rasengan'
+    elif index == 4:
+        # roccia fonda
+        name = 'rasengan'
+    elif index == 5:
+        #coleo trapano
+        name = 'rasengan'
+    elif index == 6:
+        # gatgraffio
+        name = 'rasengan'
+    else:
+        name = "rasengan"
+    
+    return name
