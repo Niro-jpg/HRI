@@ -16,11 +16,11 @@ class Monster:
     def attack(self, attack, attacked_monster):
         damage = 0
         if   attack == 1:
-            #raggio cometa
+            #Rasengan
             power = 60
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 2:
-            # fuoco fatuo
+            # Spirit Ball
             power = 30
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 3:

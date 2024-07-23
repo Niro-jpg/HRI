@@ -4,19 +4,25 @@ import time
 from name_to_animation import name_to_animation
 
 class Battle:
-    def __init__(self,ally_monster = None, enemy_monster = None, pepper = False, robot = None):
+    def __init__(self,ally_monster = None, enemy_monster_index = 0, pepper = False, robot = None):
         self.robot = robot
         if (ally_monster == None):
             self.ally_monster = Monster("andre", 100, 10, 10, 10, [1,2,5,4], "erba", "fuoco")
         else:
             self.ally_monster = ally_monster
-        if (ally_monster == None):
-            self.enemy_monster = Monster("lucas", 100, 10, 10, 10, [1,2,3,4], "acqua", "acciaio")
-        else:
-            self.enemy_monster = enemy_monster   
+        self.enemy_monster = self.get_enemy(enemy_monster_index)
         self.moves_list = Moves_List()
         self.pepper = pepper
         
+    def get_enemy(self, index):
+        if (index == 0):
+            return Monster("Naruto", 100, 10, 10, 10, [1,1,3,3], "erba", "fuoco")
+        elif(index == 1):
+            return Monster("Goku", 100, 10, 10, 10, [1,2,2,2], "erba", "fuoco")
+        elif(index == 2):
+            return Monster("Mazinga", 100, 10, 10, 10, [1,1,1,1], "erba", "fuoco")
+        elif(index == 3):
+            return Monster("Terminator", 100, 10, 10, 10, [1,1,1,1], "erba", "fuoco")
     def start_battle(self):
         self.wait_move()
         
@@ -98,13 +104,13 @@ class Battle:
         if(self.pepper):
             print("pepper")
             time.sleep(1)
-            name_to_animation(index_to_animation_name(animation))
+            name_to_animation("damage")
 
     def enemy_robot_interaction(self,phrase, animation = 0):
         if(self.pepper):
             print("pepper")
             time.sleep(1)
-            name_to_animation(index_to_animation_name(animation))
+            name_to_animation(move_name(animation))
             
     def robot_print(self, phrase):
         if self.pepper:
@@ -136,42 +142,15 @@ class Move:
 
     def name(self):
 
-        attack = self.selected_move    
-        name = "raggio"
-        if   attack == 1:
-            name = "raggio cometa"
-        elif attack == 2:
-            # fuoco fatuo
-            name = "fuoco fatuo"
-        elif attack == 3:
-            # drago distorsione
-            name = "drago distorsione"
-        elif attack == 4:
-            # roccia fonda
-            name = "roccia fonda"
-        elif attack == 5:
-            #coleo trapano
-            name = "coleo trapano"
-        elif attack == 6:
-            # gatgraffio
-            name = "gatto graffio"
-        else:
-            name = "testata"
-        
-        return name
+        return move_name(self.selected_move)
     
-def index_to_animation_name(index):
+def move_name(index):
 
-    index   
     name = 'damage'
-    if   index == 0:
-        name = 'damage'
-    elif index == 1:
-        # fuoco fatuo
-        name = 'rasengan'
+    if index == 1:
+        name = 'default_an'
     elif index == 2:
-        # drago distorsione
-        name = 'rasengan'
+        name = 'spiritball'
     elif index == 3:
         # roccia fonda
         name = 'rasengan'
@@ -184,6 +163,9 @@ def index_to_animation_name(index):
     elif index == 6:
         # gatgraffio
         name = 'rasengan'
+    elif index == 31:
+        # gatgraffio
+        name = 'damage'
     else:
         name = "rasengan"
     
