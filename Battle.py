@@ -1,6 +1,7 @@
 from Monster import *
 from utils import *
 import time
+from index_to_animation import index_to_animation
 
 class Battle:
     def __init__(self,ally_monster = None, enemy_monster = None, pepper = False, robot = None):
@@ -91,13 +92,14 @@ class Battle:
     def end_battle(self, result):
         print("battaglia finita!")
 
-    def ally_robot_interaction(self, phrase):
+    def ally_robot_interaction(self, phrase, animation = 0):
         if(self.pepper):
             print("pepper")
             time.sleep(1)
             self.robot.say('Character 1')
+            index_to_animation(0)
 
-    def enemy_robot_interaction(self,phrase):
+    def enemy_robot_interaction(self,phrase, animation = 0):
         if(self.pepper):
             print("pepper")
             time.sleep(1)
