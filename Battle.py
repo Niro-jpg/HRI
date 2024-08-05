@@ -99,7 +99,7 @@ class Battle:
         phrase = "usi " + move.name() + " contro il nemico"
         self.robot_print(phrase)
         #miao = raw_input()
-        self.ally_robot_interaction(phrase)
+        self.ally_robot_interaction(animation = 0)
         self.ally_monster.attack(move.selected_move, self.enemy_monster)
         self.continue_or_end()
 
@@ -109,7 +109,7 @@ class Battle:
         phrase = "il nemico ti attacca con " + move.name()
         self.robot_print(phrase)
         #miao = raw_input()
-        self.enemy_robot_interaction(phrase)
+        self.enemy_robot_interaction(animation = move.selected_move)
         self.enemy_monster.attack(move.selected_move, self.ally_monster)
         self.continue_or_end()
 
@@ -138,13 +138,13 @@ class Battle:
         else:
             self.end_battle(result)
 
-    def ally_robot_interaction(self, phrase, animation = 0):
+    def ally_robot_interaction(self, animation = 0):
         if(self.pepper):
             print("pepper")
             time.sleep(1)
             name_to_animation("damage")
 
-    def enemy_robot_interaction(self,phrase, animation = 0):
+    def enemy_robot_interaction(self,animation = 0):
         if(self.pepper):
             print("pepper")
             time.sleep(1)

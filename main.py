@@ -18,6 +18,9 @@ if __name__=="__main__":
    pport = 9559
    connection_url = "tcp://" + pip + ":" + str(pport)
    #start_intro(robot)
-   battle = Battle(pepper = True, robot = robot)
-   battle.start_battle()
+   while True:
+        
+     battle = Battle(pepper = True, robot = robot)
+     battle.start_battle()
+     break
    end()

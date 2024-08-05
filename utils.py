@@ -44,6 +44,7 @@ def move_name(index):
 
 def animation_name(index):
 
+    print("animation name index: ", index)
     name = 'default_an'
     if index == 1:
         name = 'default_an'
@@ -97,7 +98,7 @@ def animation_name(index):
         name = 'default_an'
         #name = 'damage'
     else:
-        name = "rasengan"
+        name = 'default_an'
     
     return name
 
