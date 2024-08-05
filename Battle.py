@@ -27,29 +27,33 @@ class Battle:
         
     def get_phrases(self,index):
         starting_phrase = 'HI, let s battle' 
-        combat_phrases = ['I ll win!', 'you re stron!']
+        combat_phrases = ['I ll win!', 'you re strong!']
         win_phrase = ' I Won'
         loose_phrase = 'I lost'
             
         if (index == 0):
-            starting_phrase = 'HI, let s battle' 
-            combat_phrases = ['I ll win!', 'you re stron!']
-            win_phrase = ' I Won'
-            loose_phrase = 'I lost'
+            #Naruto
+            starting_phrase = 'I will become HOKAGE!!' 
+            combat_phrases = ['Help me Kurama', 'I will take Sasuke back!']
+            win_phrase = 'This is the power of a future HOKAGE'
+            loose_phrase = 'NOOOOO, the leaf villaaaage!!'
         elif(index == 1):
-            starting_phrase = 'HI, let s battle' 
-            combat_phrases = ['I ll win!', 'you re stron!']
-            win_phrase = ' I Won'
-            loose_phrase = 'I lost'
+            #Goku
+            starting_phrase = 'This is gonna be fun' 
+            combat_phrases = ['Show me your best!', 'you re strong!']
+            win_phrase = ' It was a nice fight'
+            loose_phrase = 'Looks like I am gonna train more!'
         elif(index == 2):
-            starting_phrase = 'HI, let s battle' 
-            combat_phrases = ['I ll win!', 'you re stron!']
-            win_phrase = ' I Won'
-            loose_phrase = 'I lost'
+            #Goldrake
+            starting_phrase = 'GOLDRAKE! COME ON!' 
+            combat_phrases = ['I ll defeat you and then Vega', ' i will protect my planet!']
+            win_phrase = 'I will always protect my people!'
+            loose_phrase = 'Fleed.... I am.... sorry....'
         elif(index == 3):
-            starting_phrase = 'HI, let s battle' 
-            combat_phrases = ['Sarah Connor', 'skibidi']
-            win_phrase = ' I Won'
+            #Terminator
+            starting_phrase = 'I have come from the future to terminate you' 
+            combat_phrases = ['Tell me where is Sarah Connor', 'I am the peak of the future technology, surrender!']
+            win_phrase = ' You cannot beat the skynet!'
             loose_phrase = 'I ll be back'
         
         return Phrases(starting_phrase = starting_phrase, 
@@ -73,7 +77,7 @@ class Battle:
             if is_int:
                 move = int(move)
                 if not 0 < int(move) < 5:
-                    self.robot_print("mossa non valida")
+                    self.robot_print("invalid move")
                 else:
                     selected_ally_move = Move(self.ally_monster, int(move), 1, True)
                     self.moves_list.add_move(selected_ally_move)
@@ -82,7 +86,7 @@ class Battle:
                     self.moves_list.add_move(selected_enemy_move)
                     break
             else:
-                self.robot_print("non ho capito")
+                self.robot_print("I do not understand")
         self.moves_list.sort_list_speed()
         self.solve_actions()
     
@@ -96,9 +100,8 @@ class Battle:
             else: self.solve_enemy_action(move)
 
     def solve_player_action(self, move):
-        phrase = "usi " + move.name() + " contro il nemico"
+        phrase = "You use " + move.name() + " on the opponent"
         self.robot_print(phrase)
-        #miao = raw_input()
         self.ally_robot_interaction(animation = 0)
         self.ally_monster.attack(move.selected_move, self.enemy_monster)
         self.continue_or_end()
@@ -106,9 +109,8 @@ class Battle:
     def solve_enemy_action(self, move):
         phrase = self.phrases.random_combat_phrase()
         if phrase != 0: self.robot_print(phrase)
-        phrase = "il nemico ti attacca con " + move.name()
+        phrase = "the opponent strikes you with " + move.name()
         self.robot_print(phrase)
-        #miao = raw_input()
         self.enemy_robot_interaction(animation = move.selected_move)
         self.enemy_monster.attack(move.selected_move, self.ally_monster)
         self.continue_or_end()
@@ -125,7 +127,7 @@ class Battle:
 
     def end_battle(self, result):
         if(result == 0):
-            self.robot_print("pareggio")
+            self.robot_print("Draw")
         elif(result == 1):
             self.robot_print(self.phrases.win_phrase)
         elif(result == 2):
@@ -140,13 +142,13 @@ class Battle:
 
     def ally_robot_interaction(self, animation = 0):
         if(self.pepper):
-            print("pepper")
+            print("Pepper")
             time.sleep(1)
             name_to_animation("damage")
 
     def enemy_robot_interaction(self,animation = 0):
         if(self.pepper):
-            print("pepper")
+            print("Pepper")
             time.sleep(1)
             name_to_animation(animation_name(animation))
             

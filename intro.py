@@ -25,7 +25,7 @@ def start_intro(new_robot):
    else:
       question = 'Welcome Back {0}!'.format(username)
       robot.say(question)
-   time.sleep(1)   
+   time.sleep(0.5)   
    question ="Would you like to play a game with me?"
    robot.say(question)
    options = ['yes', 'no']
@@ -39,30 +39,34 @@ def start_intro(new_robot):
    robot.say('Let us play, Human-Robot Violent Interaction!')
    question = 'Choose your character :'
    robot.say(question)
-   time.sleep(1)
-   robot.say('Character 1')
-   time.sleep(3)
-   robot.say('Character 2')
-   time.sleep(3)
-   robot.say('Character 3')
-   characters = ['1', '2', '3']
+   time.sleep(0.5)
+   robot.say('Naruto')
+   time.sleep(0.5)
+   robot.say('Goku')
+   time.sleep(0.5)
+   robot.say('Goldrake')
+   time.sleep(0.5)
+   robot.say('Terminator')
+   characters = ['Naruto', 'Goku', 'Goldrake', 'Terminator']
    option = stt(characters, question, t = 20)
    character = characters[option]
    robot.say('You have chosen ' + character)
    question = 'Very well! Which character shall I be then?'
    robot.say(question)
-   time.sleep(1)
-   robot.say('Character 1')
-   time.sleep(3)
-   robot.say('Character 2')
-   time.sleep(3)
-   robot.say('Character 3')
-   opponents = ['1', '2', '3']
+   time.sleep(0.5)
+   robot.say('Naruto')
+   time.sleep(0.5)
+   robot.say('Goku')
+   time.sleep(0.5)
+   robot.say('Goldrake')
+   time.sleep(0.5)
+   robot.say('Terminator')
+   opponents = ['Naruto', 'Goku', 'Goldrake', 'Terminator']
    option = stt(opponents, question, t = 20)
    opponent = opponents[option]
    #TODO Say opponent-specific start phrase
    robot.say('Let the battle begin!')
-   exit()
+
 
 def stt(vocabulary, question, t = 10):
    global robot
@@ -76,15 +80,6 @@ def stt(vocabulary, question, t = 10):
       for i in range(len(vocabulary)):
           if vocabulary[i] in query:
               option = i
-              robot.say('You picked option ' + str(i))
+              #robot.say('You picked option ' + str(i))
               break
    return option
-
-def timeout(question):
-   global robot
-   robot.say('You have not answered. Would you like me to repeat the question?')
-   repeat = raw_input()
-   if repeat == 'yes':
-      robot.say(question)
-   else:
-      sys.exit()
