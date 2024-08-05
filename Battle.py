@@ -4,7 +4,7 @@ import time
 from name_to_animation import name_to_animation
 
 class Battle:
-    def __init__(self, ally_monster_index = 1, enemy_monster_index = 3, pepper = False, robot = None):
+    def __init__(self, ally_monster_index = 3, enemy_monster_index = 2, pepper = False, robot = None):
         self.robot = robot
         self.ally_monster = self.get_monster(ally_monster_index)
         self.enemy_monster = self.get_monster(enemy_monster_index)
@@ -76,9 +76,9 @@ class Battle:
                 if not 0 < int(move) < 5:
                     self.robot_print("invalid move")
                 else:
-                    selected_ally_move = Move(self.ally_monster, int(move), 1, True)
+                    selected_ally_move = Move(self.ally_monster, self.ally_monster.move(int(move) - 1), 1, True)
                     self.moves_list.add_move(selected_ally_move)
-                    random_move = random.randint(1,4)
+                    random_move = random.randint(0,3)
                     selected_enemy_move = Move(self.enemy_monster, self.enemy_monster.move(random_move), 1, False)
                     self.moves_list.add_move(selected_enemy_move)
                     break

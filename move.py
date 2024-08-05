@@ -95,10 +95,10 @@ def space_thunder():
     damage()
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
     #damage()
     #rasengan()
-    default_an()
+    #default_an()
     #spiritball()
     #come_with_me_if_you_want_to_live()
     #space_thunder()

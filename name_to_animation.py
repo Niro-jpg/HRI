@@ -8,4 +8,4 @@ def name_to_animation(name):
       if a == eval(name):
          ani = a
    ani()
-name_to_animation('space thunder')
+#name_to_animation('space thunder')

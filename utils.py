@@ -26,13 +26,13 @@ def move_name(index):
     elif index == 12:
         name = 'come with me if you want to live'
     elif index == 13:
-        name = 'sd'
+        name = 'space sword'
     elif index == 14:
-        name = '100 hits'
+        name = 'space strike'
     elif index == 15:
-        name = 'multiplication technique combo'
+        name = 'space alabard'
     elif index == 16:
-        name = 'rasengan'
+        name = 'space thunder'
     elif index == 17:
         name = 'sd'
     elif index == 31:
@@ -90,7 +90,7 @@ def animation_name(index):
         name = 'default_an'
         #name = 'multiplication technique combo'
     elif index == 16:
-        name = 'rasengan'
+        name = 'space_thunder'
     elif index == 17:
         name = 'default_an'
         #name = 'sd'

@@ -18,10 +18,11 @@ if __name__=="__main__":
    pip = os.getenv('PEPPER_IP')
    pport = 9559
    connection_url = "tcp://" + pip + ":" + str(pport)
-   pc, oc = start_intro(robot)
+   #pc, oc = start_intro(robot)
    while True:
         
-     battle = Battle(pepper = True, robot = robot, ally_monster_index = pc, enemy_monster_index = oc)
+     #battle = Battle(pepper = True, robot = robot, ally_monster_index = pc, enemy_monster_index = oc)
+     battle = Battle(pepper = True, robot = robot)
      battle.start_battle()
      break
    end()
