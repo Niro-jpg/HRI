@@ -4,18 +4,15 @@ import time
 from name_to_animation import name_to_animation
 
 class Battle:
-    def __init__(self,ally_monster = None, enemy_monster_index = 3, pepper = False, robot = None):
+    def __init__(self, ally_monster_index = 1, enemy_monster_index = 3, pepper = False, robot = None):
         self.robot = robot
-        if (ally_monster == None):
-            self.ally_monster = Monster("andre", 100, 10, 10, 10, [1,2,5,4], "erba", "fuoco")
-        else:
-            self.ally_monster = ally_monster
-        self.enemy_monster = self.get_enemy(enemy_monster_index)
+        self.ally_monster = self.get_monster(ally_monster_index)
+        self.enemy_monster = self.get_monster(enemy_monster_index)
         self.moves_list = Moves_List()
         self.pepper = pepper
         self.phrases = self.get_phrases(enemy_monster_index)
         
-    def get_enemy(self, index):
+    def get_monster(self, index):
         if (index == 0):
             return Monster("Naruto", 100, 10, 10, 10, [5,6,7,8], "erba", "fuoco")
         elif(index == 1):

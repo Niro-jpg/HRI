@@ -48,8 +48,8 @@ def start_intro(new_robot):
    time.sleep(0.5)
    robot.say('Terminator')
    characters = ['Naruto', 'Goku', 'Goldrake', 'Terminator']
-   option = stt(characters, question, t = 20)
-   character = characters[option]
+   option_c = stt(characters, question, t = 20)
+   character = characters[option_c]
    robot.say('You have chosen ' + character)
    question = 'Very well! Which character shall I be then?'
    robot.say(question)
@@ -62,10 +62,11 @@ def start_intro(new_robot):
    time.sleep(0.5)
    robot.say('Terminator')
    opponents = ['Naruto', 'Goku', 'Goldrake', 'Terminator']
-   option = stt(opponents, question, t = 20)
-   opponent = opponents[option]
+   option_o = stt(opponents, question, t = 20)
+   opponent = opponents[option_o]
    #TODO Say opponent-specific start phrase
    robot.say('Let the battle begin!')
+   return option_c, option_o
 
 
 def stt(vocabulary, question, t = 10):
