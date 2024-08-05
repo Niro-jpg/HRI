@@ -37,17 +37,23 @@ class Monster:
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 6:
             # gatgraffio
-            print("Hai selezionato il caso 2.")
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 7:
-            print("Hai selezionato il caso 3.")
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 8:
-            print("Hai selezionato il caso 2.")
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 9:
-            print("Hai selezionato il caso 3.")
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 10:
-            print("Hai selezionato il caso 2.")
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         else:
-            print("Caso non valido.")
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         attacked_monster.actual_PS = max(0, attacked_monster.actual_PS - damage)
 
     def text_moves_list(self):
@@ -55,3 +61,6 @@ class Monster:
         for i, move in enumerate(self.moveset):
             text+= str(i+ 1) + ")" + move_name(move) + " "
         return text
+    
+    def move(self, index):
+        return self.moveset[index]
