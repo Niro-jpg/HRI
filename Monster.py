@@ -17,11 +17,11 @@ class Monster:
         damage = 0
         if   attack == 1:
             #Rasengan
-            power = 60
+            power = 100
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 2:
             # Spirit Ball
-            power = 30
+            power = 50
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 3:
             # drago distorsione
@@ -29,7 +29,7 @@ class Monster:
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 4:
             # roccia fonda
-            power = 40
+            power = 10
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 5:
             #coleo trapano
@@ -49,6 +49,42 @@ class Monster:
             power = 25
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 10:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 11:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 12:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 13:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 14:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 15:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 16:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 17:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 18:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 19:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 20:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 21:
+            power = 25
+            damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        elif attack == 22:
             power = 25
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         else:
