@@ -89,7 +89,7 @@ class Battle:
     
     def solve_actions(self):
         if (self.moves_list.len() == 0): 
-            print(self.battle_state())
+            #print(self.battle_state())
             self.wait_move()
         else:
             move = self.moves_list.pop_first()
@@ -139,13 +139,11 @@ class Battle:
 
     def ally_robot_interaction(self, animation = 0):
         if(self.pepper):
-            print("Pepper")
             time.sleep(1)
             name_to_animation("damage")
 
     def enemy_robot_interaction(self,animation = 0):
         if(self.pepper):
-            print("Pepper")
             time.sleep(1)
             name_to_animation(animation_name(animation))
             
