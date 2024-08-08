@@ -13,13 +13,15 @@ class Battle:
         self.phrases = self.get_phrases(enemy_monster_index)
         
     def get_monster(self, index):
-        if (index == 0):
+        if (index == 0 or index == "Naruto" or index == "naruto"):
             return Monster("Naruto", 100, 10, 10, 10, [5,6,7,8], "erba", "fuoco")
-        elif(index == 1):
+        elif(index == 1 or index == "Goku" or index == "goku"):
             return Monster("Goku", 100, 10, 10, 10, [1,2,3,4], "erba", "fuoco")
-        elif(index == 2):
+        elif(index == 2 or index == "Goldrake" or index == "goldrake"):
             return Monster("Goldrake", 100, 10, 10, 10, [13,14,15,16], "erba", "fuoco")
-        elif(index == 3):
+        elif(index == 3 or index == "Terminator" or index == "terminator"):
+            return Monster("Terminator", 100, 10, 10, 10, [9,10,11,12], "erba", "fuoco")
+        else:
             return Monster("Terminator", 100, 10, 10, 10, [9,10,11,12], "erba", "fuoco")
         
     def get_phrases(self,index):
