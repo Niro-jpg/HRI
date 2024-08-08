@@ -30,25 +30,25 @@ class Battle:
         win_phrase = ' I Won'
         loose_phrase = 'I lost'
             
-        if (index == 0):
+        if (index == 0 or index == "Naruto" or index == "naruto"):
             #Naruto
             starting_phrase = 'I will become HOKAGE!!' 
             combat_phrases = ['Help me Kurama', 'I will take Sasuke back!']
             win_phrase = 'This is the power of a future HOKAGE'
             loose_phrase = 'NOOOOO, the leaf villaaaage!!'
-        elif(index == 1):
+        elif(index == 1 or index == "Goku" or index == "goku"):
             #Goku
             starting_phrase = 'This is gonna be fun' 
             combat_phrases = ['Show me your best!', 'you re strong!']
             win_phrase = ' It was a nice fight'
             loose_phrase = 'Looks like I am gonna train more!'
-        elif(index == 2):
+        elif(index == 2 or index == "Goldrake" or index == "goldrake"):
             #Goldrake
             starting_phrase = 'GOLDRAKE! COME ON!' 
             combat_phrases = ['I ll defeat you and then Vega', ' i will protect my planet!']
             win_phrase = 'I will always protect my people!'
             loose_phrase = 'Fleed.... I am.... sorry....'
-        elif(index == 3):
+        elif(index == 3 or index == "Terminator" or index == "terminator"):
             #Terminator
             starting_phrase = 'I have come from the future to terminate you' 
             combat_phrases = ['Tell me where is Sarah Connor', 'I am the peak of the future technology, surrender!']
