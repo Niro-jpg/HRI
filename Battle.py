@@ -120,11 +120,7 @@ class Battle:
         phrase = self.phrases.random_combat_phrase()
         if phrase != 0: self.robot_print(phrase)
         if(move.selected_move == 12):
-            phrase = "the opponent strikes you with " + move.name()
-            self.robot_print(phrase)
             self.enemy_robot_interaction(animation = move.selected_move)
-            phrase = "you are so confused to hit yourself"
-            self.robot_print(phrase)
             self.enemy_monster.attack(move.selected_move, self.ally_monster)
             
         else:

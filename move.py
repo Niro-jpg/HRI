@@ -73,6 +73,7 @@ def come_with_me_if_you_want_to_live(battle):
     times = len(angles) * [2.0]
     moveProxy.angleInterpolation(jointNames, angles, times, isAbsolute)
     time.sleep(0.5)
+    battle.robot_print("come with me if you want to live")
     battle.robot_print('The opponent`s move confuses you')
     battle.robot_print('You are so confused to hit yourself!')
     time.sleep(0.5)
