@@ -3,7 +3,7 @@ import os, qi
 from naoqi import ALProxy
 import almath
 
-def damage():
+def damage(battle):
    moveProxy = ALProxy("ALMotion","localhost",9559)
    jointNames = ['RShoulderPitch', 'LShoulderPitch', "HeadYaw", "HeadPitch"]
    angles = [119.5*almath.TO_RAD, 119.5*almath.TO_RAD, 1.6, -0.2]
@@ -15,7 +15,7 @@ def damage():
    speed = 0.7 
    postureProxy.goToPosture(initial_posture,  speed)
 
-def rasengan():
+def rasengan(battle):
     moveProxy = ALProxy("ALMotion","localhost",9559)
     jointNames = ["RElbowRoll", "RElbowYaw", 'RHand', 'RShoulderPitch', 'RShoulderRoll', 'RWristYaw']
     angles = [75.5*almath.TO_RAD, 106.8*almath.TO_RAD, 0.98, 88.0*almath.TO_RAD, -88.9*almath.TO_RAD, 57.6*almath.TO_RAD]
@@ -32,7 +32,7 @@ def rasengan():
     postureProxy.goToPosture(initial_posture,  speed)
 
 
-def default_an():
+def default_an(battle):
     moveProxy = ALProxy("ALMotion","localhost",9559)
     jointNames = ['RElbowRoll', 'RElbowYaw', 'RHand', 'RShoulderPitch', 'RShoulderRoll', 'RWristYaw']
     isAbsolute = True
@@ -45,7 +45,7 @@ def default_an():
     speed = 0.7 
     postureProxy.goToPosture(initial_posture,  speed)
 
-def spiritball():
+def spiritball(battle):
     moveProxy = ALProxy("ALMotion","localhost",9559)
     jointNames = ["RElbowRoll", "RElbowYaw", 'RHand', 'RShoulderPitch', 'RShoulderRoll', 'RWristYaw', "LElbowRoll", "LElbowYaw", 'LHand', 'LShoulderPitch', 'LShoulderRoll', 'LWristYaw']
     angles = [5.9*almath.TO_RAD, 99.2*almath.TO_RAD, 0.98, -82.1*almath.TO_RAD, -6.0*almath.TO_RAD, -94.7*almath.TO_RAD, -5.9*almath.TO_RAD, -99.2*almath.TO_RAD, 0.98, -82.1*almath.TO_RAD, -6.0*almath.TO_RAD, 94.7*almath.TO_RAD]
@@ -64,7 +64,7 @@ def spiritball():
     postureProxy.goToPosture(initial_posture,  speed)
 
 
-def come_with_me_if_you_want_to_live():
+def come_with_me_if_you_want_to_live(battle):
 
     moveProxy = ALProxy("ALMotion","localhost",9559)
     jointNames = ['RElbowRoll', 'RElbowYaw', 'RHand', 'RShoulderPitch', 'RShoulderRoll', 'RWristYaw']
@@ -73,13 +73,16 @@ def come_with_me_if_you_want_to_live():
     times = len(angles) * [2.0]
     moveProxy.angleInterpolation(jointNames, angles, times, isAbsolute)
     time.sleep(0.5)
+    battle.robot_print('The opponent`s move confuses you')
+    battle.robot_print('You are so confused to hit yourself!')
+    time.sleep(0.5)
     initial_posture = "Stand"
     postureProxy = ALProxy('ALRobotPosture', 'localhost', 9559)
     speed = 0.7 
     postureProxy.goToPosture(initial_posture,  speed)
 
 
-def space_thunder():
+def space_thunder(battle):
     moveProxy = ALProxy("ALMotion","localhost",9559)
     jointNames = ["RElbowRoll", "RElbowYaw", 'RHand', 'RShoulderPitch', 'RShoulderRoll', 'RWristYaw', "LElbowRoll", "LElbowYaw", 'LHand', 'LShoulderPitch', 'LShoulderRoll', 'LWristYaw']
     angles = [5.9*almath.TO_RAD, 99.2*almath.TO_RAD, 0.98, -82.1*almath.TO_RAD, -6.0*almath.TO_RAD, -94.7*almath.TO_RAD, -5.9*almath.TO_RAD, -99.2*almath.TO_RAD, 0.98, -82.1*almath.TO_RAD, -6.0*almath.TO_RAD, 94.7*almath.TO_RAD]

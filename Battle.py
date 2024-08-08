@@ -119,10 +119,19 @@ class Battle:
     def solve_enemy_action(self, move):
         phrase = self.phrases.random_combat_phrase()
         if phrase != 0: self.robot_print(phrase)
-        phrase = "the opponent strikes you with " + move.name()
-        self.robot_print(phrase)
-        self.enemy_robot_interaction(animation = move.selected_move)
-        self.enemy_monster.attack(move.selected_move, self.ally_monster)
+        if(move.selected_move == 12):
+            phrase = "the opponent strikes you with " + move.name()
+            self.robot_print(phrase)
+            self.enemy_robot_interaction(animation = move.selected_move)
+            phrase = "you are so confused to hit yourself"
+            self.robot_print(phrase)
+            self.enemy_monster.attack(move.selected_move, self.ally_monster)
+            
+        else:
+            phrase = "the opponent strikes you with " + move.name()
+            self.robot_print(phrase)
+            self.enemy_robot_interaction(animation = move.selected_move)
+            self.enemy_monster.attack(move.selected_move, self.ally_monster)
         self.continue_or_end()
 
     def check_end_battle(self):
@@ -153,12 +162,12 @@ class Battle:
     def ally_robot_interaction(self, animation = 0):
         if(self.pepper):
             time.sleep(1)
-            name_to_animation("damage")
+            name_to_animation("damage", self)
 
     def enemy_robot_interaction(self,animation = 0):
         if(self.pepper):
             time.sleep(1)
-            name_to_animation(animation_name(animation))
+            name_to_animation(animation_name(animation), self)
             
     def robot_print(self, phrase):
         if self.pepper:
