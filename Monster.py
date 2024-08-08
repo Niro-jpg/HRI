@@ -12,16 +12,18 @@ class Monster:
         self.moveset = moveset
         self.type_1 = type_1
         self.type_2 = type_2
+        self.used_super = False
     
     def attack(self, attack, attacked_monster):
         damage = 0
+        print(attack)
         if   attack == 1:
             #Rasengan
-            power = 100
+            power = 25
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 2:
             # Spirit Ball
-            power = 50
+            power = 25
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 3:
             # drago distorsione
@@ -29,7 +31,7 @@ class Monster:
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 4:
             # roccia fonda
-            power = 10
+            power = 60
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 5:
             #coleo trapano
@@ -43,7 +45,7 @@ class Monster:
             power = 25
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 8:
-            power = 25
+            power = 60
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 9:
             power = 25
@@ -55,7 +57,7 @@ class Monster:
             power = 25
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 12:
-            power = 25
+            power = 60
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 13:
             power = 25
@@ -67,7 +69,7 @@ class Monster:
             power = 25
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 16:
-            power = 25
+            power = 60
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
         elif attack == 17:
             power = 25
@@ -90,6 +92,7 @@ class Monster:
         else:
             power = 25
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
+        print(damage)
         attacked_monster.actual_PS = max(0, attacked_monster.actual_PS - damage)
 
     def text_moves_list(self):
