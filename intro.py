@@ -25,62 +25,71 @@ def start_intro(new_robot):
    else:
       question = 'Welcome Back {0}!'.format(username)
       robot.say(question)
-   time.sleep(0.5)   
-   question ="Would you like to play a game with me?"
-   robot.say(question)
-   options = ['yes', 'no']
-   option = stt(options, question)
-   if option == 1:
+   time.sleep(0.5)
+   options = {'Yes' : ['Yes', 'yes', '0'],
+              'No' : ['No', 'no', '1']}
+   answered = False
+   while not answered:
+	   question ="Would you like to play a game with me?"
+	   robot.say(question)
+	   option, answered = stt(options, question)
+   if option in options['No']:
       robot.say('Very well. I shall go to sleep then.')
       exit()
    #TODO from here onwards the voice becomes that of a presenter
    robot.say('Wonderful! Let us play a special game then.')
    time.sleep(1)
    robot.say('Let us play, Human-Robot Violent Interaction!')
-   question = 'Choose your character :'
-   robot.say(question)
-   time.sleep(0.5)
-   robot.say('Naruto')
-   time.sleep(0.5)
-   robot.say('Goku')
-   time.sleep(0.5)
-   robot.say('Goldrake')
-   time.sleep(0.5)
-   robot.say('Terminator')
-   characters = ['Naruto', 'Goku', 'Goldrake', 'Terminator']
-   option_c = stt(characters, question, t = 20)
-   character = characters[option_c]
+   characters = {'Naruto' : ['Naruto', 'naruto', '0'],  
+                         'Goku' : ['Goku', 'goku', '1'], 
+                         'Goldrake' : ['Goldrake', 'goldrake', '2'], 
+                         'Terminator' : ['Terminator', 'terminator', '3']}
+   answered = False
+   while not answered:
+	   question = 'Choose your character :'
+	   robot.say(question)
+	   time.sleep(0.5)
+	   robot.say('Naruto')
+	   time.sleep(0.5)
+	   robot.say('Goku')
+	   time.sleep(0.5)
+	   robot.say('Goldrake')
+	   time.sleep(0.5)
+	   robot.say('Terminator')
+	   character, answered = stt(characters, question, t = 20)
    robot.say('You have chosen ' + character)
-   question = 'Very well! Which character shall I be then?'
-   robot.say(question)
-   time.sleep(0.5)
-   robot.say('Naruto')
-   time.sleep(0.5)
-   robot.say('Goku')
-   time.sleep(0.5)
-   robot.say('Goldrake')
-   time.sleep(0.5)
-   robot.say('Terminator')
-   opponents = ['Naruto', 'Goku', 'Goldrake', 'Terminator']
-   option_o = stt(opponents, question, t = 20)
-   opponent = opponents[option_o]
-   #TODO Say opponent-specific start phrase
+   answered = False
+   while not answered:
+	   question = 'Very well! Which character shall I be then?'
+	   robot.say(question)
+	   time.sleep(0.5)
+	   robot.say('Naruto')
+	   time.sleep(0.5)
+	   robot.say('Goku')
+	   time.sleep(0.5)
+	   robot.say('Goldrake')
+	   time.sleep(0.5)
+	   robot.say('Terminator')
+	   opponent, answered = stt(characters, question, t = 20)
+   robot.say(character + ' against ' + opponent)
    robot.say('Let the battle begin!')
-   return option_c, option_o
+   return character, opponent
 
 
 def stt(vocabulary, question, t = 10):
    global robot
-   #timer = Timer(t, timeout, args = (question, ))
-   #timer.start()
+   answered = False
    query = raw_input()
-   # answer = robot.asr(vocabulary,timeout)
-   #timer.cancel()
    option = 'Invalid'
    if query!="": # valid answer
-      for i in range(len(vocabulary)):
-          if vocabulary[i] in query:
-              option = i
-              #robot.say('You picked option ' + str(i))
-              break
-   return option
+      for vocab in vocabulary:
+          for entry in vocabulary[vocab]:
+		  if entry == query:
+		      option = vocab
+		      answered = True
+		      break
+          if answered == True:
+	          break
+   if option == 'Invalid':
+      robot.say('I do not understand')
+   return option, answered
