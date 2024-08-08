@@ -107,3 +107,10 @@ def is_convertible_to_int(s):
         return True
     except ValueError:
         return False
+
+def is_super_move(index):
+    super_moves_list = [4,8,12,16]
+    if (index in super_moves_list):
+        return True
+    else:
+        return False

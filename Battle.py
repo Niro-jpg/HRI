@@ -77,10 +77,21 @@ class Battle:
                 move = int(move)
                 if not 0 < int(move) < 5:
                     self.robot_print("invalid move")
+                elif is_super_move(self.ally_monster.move(int(move) - 1)) and self.ally_monster.used_super:
+                    self.robot_print("super already used")
                 else:
+                    if (is_super_move(self.ally_monster.move(int(move) - 1))):
+                        self.ally_monster.used_super = True
                     selected_ally_move = Move(self.ally_monster, self.ally_monster.move(int(move) - 1), 1, True)
                     self.moves_list.add_move(selected_ally_move)
-                    random_move = random.randint(0,3)
+                    while True:
+                        random_move = random.randint(0,3)
+                        if not (is_super_move(self.enemy_monster.move(random_move))):
+                            break
+                        elif not (self.enemy_monster.used_super ):
+                            break
+                    if (is_super_move(self.enemy_monster.move(random_move))):
+                        self.enemy_monster.used_super = True
                     selected_enemy_move = Move(self.enemy_monster, self.enemy_monster.move(random_move), 1, False)
                     self.moves_list.add_move(selected_enemy_move)
                     break
