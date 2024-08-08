@@ -16,7 +16,6 @@ class Monster:
     
     def attack(self, attack, attacked_monster):
         damage = 0
-        print(attack)
         if   attack == 1:
             #Rasengan
             power = 25
@@ -92,7 +91,6 @@ class Monster:
         else:
             power = 25
             damage = int(power*(self.ATK/attacked_monster.DEF)*random.uniform(0.85, 1))
-        print(damage)
         attacked_monster.actual_PS = max(0, attacked_monster.actual_PS - damage)
 
     def text_moves_list(self):
