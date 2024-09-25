@@ -71,7 +71,8 @@ class Battle:
     def wait_move(self):
         while True:
             self.robot_print(" which move do you choose between:\n" + self.ally_monster.text_moves_list())
-            move = raw_input()
+            question = " which move do you choose between:\n" + self.ally_monster.text_moves_list()
+            move = stt(["0", "1", "2", "3"], question)
             is_int = is_convertible_to_int(move)
             if is_int:
                 move = int(move)
@@ -221,3 +222,18 @@ class Move:
     def animation(self):
         
         return animation_name(self.selected_move)
+
+def stt(vocabulary, question, t = 10):
+   global robot
+   answered = False
+
+
+   option = robot.asr(vocabulary, t)
+   if option == None or option == 'none':
+      option = 'Invalid'
+   else:
+      answered = True
+   
+   if option == 'Invalid':
+      robot.say('I do not understand')
+   return option, answered

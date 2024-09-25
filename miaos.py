@@ -8,7 +8,7 @@ def start_intro():
    question = 'Hello. What is your name?'
    robot.say(question)
    username = raw_input()
-   memProxy = ALProxy("ALMemory","localhost",9559)
+   memProxy = ALProxy("ALMemory",os.getenv('PEPPER_IP'),9559)
    try:
       user = memProxy.getData(username)
    except:

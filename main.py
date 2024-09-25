@@ -32,13 +32,12 @@ if __name__=="__main__":
    connection_url = "tcp://" + pip + ":" + str(pport)
    pc, oc = start_intro(robot)
    while True:
-     battle = Battle(pepper = True, robot = robot, ally_monster_index = pc, enemy_monster_index = oc)
-     battle.start_battle()
-     question = 'Hello. What is your name?'
-     question = 'Great battle! Would you like to play again?'
-     robot.say(question)
-     options = ['yes', 'no']
-     option = stt(options, question)
-     if options[option] == 'no':
-        break
-   end()
+      battle = Battle(pepper = True, robot = robot, ally_monster_index = pc, enemy_monster_index = oc)
+      battle.start_battle()
+      question = 'Hello. What is your name?'
+      question = 'Great battle! Would you like to play again?'
+      robot.say(question)
+      options = ['yes', 'no']
+      option = stt(options, question)
+      if options[option] == 'no':
+         break

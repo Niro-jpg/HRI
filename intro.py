@@ -5,15 +5,20 @@ import time
 
 robot = None
 
+def user_detected():
+   return True
+
 def start_intro(new_robot):
    
    global robot 
    robot = new_robot
-
+   while (True):
+      if(user_detected()):
+         break
    question = 'Hello. What is your name?'
    robot.say(question)
    username = raw_input()
-   memProxy = ALProxy("ALMemory","localhost",9559)
+   memProxy = ALProxy("ALMemory",os.getenv('PEPPER_IP'),9559)
    try:
       user = memProxy.getData(username)
    except:
@@ -78,18 +83,48 @@ def start_intro(new_robot):
 
 def stt(vocabulary, question, t = 10):
    global robot
+   change_eyes_color()
    answered = False
-   query = raw_input()
-   option = 'Invalid'
-   if query!="": # valid answer
-      for vocab in vocabulary:
-          for entry in vocabulary[vocab]:
-		  if entry == query:
-		      option = vocab
-		      answered = True
-		      break
-          if answered == True:
-	          break
+   
+   
+   vocab = []
+   for v in vocabulary.keys():
+      vocab += vocabulary[v]
+
+
+   option = robot.asr(vocab, t)
+   if option == None or option == 'none':
+      option = 'Invalid'
+   else:
+      answered = True
+   '''
+   asr_proxy = ALProxy("ALSpeechRecognition", os.getenv('PEPPER_IP'),9559)
+   asr_proxy.setLanguage("English")
+   asr_proxy.setVocabulary(["yes","no"], False)
+   asr_proxy.subscribe("TEST ASR")
+   '''
+   #option = asr_proxy.recognize()
+   #'''
+   #query = raw_input()
+   #option = 'Invalid'
+   #if query!="": # valid answer
+   #   for vocab in vocabulary:
+   #       for entry in vocabulary[vocab]:
+	#	  if entry == query:
+	#	      option = vocab
+	#	      answered = True
+	#	      break
+   #       if answered == True:
+	#          break
+   #'''
+   
    if option == 'Invalid':
       robot.say('I do not understand')
    return option, answered
+
+def change_eyes_color():
+   ledProxy = ALProxy('ALLeds',os.getenv('PEPPER_IP'),9559)
+   red = 255
+   green = 0
+   blue = 0
+   ledProxy.fadeRGB("AllLeds", red*256+ green*256, 0.5)
