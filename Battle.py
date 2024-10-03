@@ -107,7 +107,8 @@ class Battle:
             self.wait_move()
         else:
             move = self.moves_list.pop_first()
-            if move.player: self.solve_player_action(move)
+            if move.player: 
+                self.solve_player_action(move) 
             else: self.solve_enemy_action(move)
 
     def solve_player_action(self, move):
@@ -115,6 +116,8 @@ class Battle:
         self.robot_print(phrase)
         self.ally_robot_interaction(animation = 0)
         self.ally_monster.attack(move.selected_move, self.enemy_monster)
+        if(is_super_move(move)):
+                self.robot_print("A SUPER MOVE, WOW")
         self.continue_or_end()
 
     def solve_enemy_action(self, move):
