@@ -81,10 +81,26 @@ def start_intro(new_robot):
    return character, opponent
 
 
-def stt(vocabulary, question, t = 10):
+def stt(vocabulary, question, t = 10, is_robot = False):
    global robot
    change_eyes_color()
    answered = False
+   if is_robot == False:
+      query = raw_input()
+      option = 'Invalid'
+      if query!="": # valid answer
+         for vocab in vocabulary:
+            for entry in vocabulary[vocab]:
+               if entry == query:
+                     option = vocab
+                     answered = True
+                     break
+               if answered == True:
+                     break
+      if option == 'Invalid':
+         robot.say('I do not understand')
+      return option, answered
+   
    
    
    vocab = []
@@ -105,17 +121,6 @@ def stt(vocabulary, question, t = 10):
    '''
    #option = asr_proxy.recognize()
    #'''
-   #query = raw_input()
-   #option = 'Invalid'
-   #if query!="": # valid answer
-   #   for vocab in vocabulary:
-   #       for entry in vocabulary[vocab]:
-	#	  if entry == query:
-	#	      option = vocab
-	#	      answered = True
-	#	      break
-   #       if answered == True:
-	#          break
    #'''
    
    if option == 'Invalid':

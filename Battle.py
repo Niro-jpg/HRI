@@ -116,7 +116,7 @@ class Battle:
         self.robot_print(phrase)
         self.ally_robot_interaction(animation = 0)
         self.ally_monster.attack(move.selected_move, self.enemy_monster)
-        if(is_super_move(move)):
+        if(is_super_move(move.selected_move)):
                 self.robot_print("A SUPER MOVE, WOW")
         self.continue_or_end()
 
@@ -226,17 +226,19 @@ class Move:
         
         return animation_name(self.selected_move)
 
-def stt(vocabulary, question, t = 10):
-   global robot
-   answered = False
+def stt(vocabulary, question, t = 10, is_robot = False):
+    global robot
+    answered = False
 
-
-   option = robot.asr(vocabulary, t)
-   if option == None or option == 'none':
-      option = 'Invalid'
-   else:
-      answered = True
-   
-   if option == 'Invalid':
-      robot.say('I do not understand')
-   return option, answered
+    if is_robot ==True:
+        option = robot.asr(vocabulary, t)
+    else:
+        option = raw_input()
+    if option == None or option == 'none':
+        option = 'Invalid'
+    else:
+        answered = True
+    
+    if option == 'Invalid':
+        robot.say('I do not understand')
+    return option
